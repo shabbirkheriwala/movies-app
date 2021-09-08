@@ -4,21 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.google.android.material.snackbar.Snackbar
 import com.ssk.movies.R
 import com.ssk.movies.di.AppModule
 import com.ssk.movies.util.Resource
-import com.ssk.movies.util.Utils
 import com.ssk.movies.util.Utils.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_movies.*
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 
 @AndroidEntryPoint
-class MovieDetailsFragment : Fragment() {
+class MovieDetailsFragment : BaseFragment() {
 
     private val viewModel: MoviesDetailsViewModel by viewModels()
 
@@ -34,19 +31,6 @@ class MovieDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         checkForNetwork()
         setupObservers()
-    }
-
-    private fun checkForNetwork() {
-        activity?.let {
-            if (!Utils.isNetworkConnected(it.application)) {
-                it.progressBar.visibility = View.GONE
-                Snackbar.make(
-                    constraint_layout,
-                    getString(R.string.network_unavailable),
-                    Snackbar.LENGTH_LONG
-                ).show()
-            }
-        }
     }
 
     private fun setupObservers() {

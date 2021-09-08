@@ -27,8 +27,8 @@ import javax.inject.Singleton
 object AppModule {
     /*
     * The api calls for the app :-
-    * https://api.themoviedb.org/3/movie/popular?api_key=9d8cc8e620ec4bcbcb682f8f2cca8285&language=en-US&page=1
-    * https://api.themoviedb.org/3/movie/550988?api_key=9d8cc8e620ec4bcbcb682f8f2cca8285&language=en-US
+    * https://api.themoviedb.org/3/movie/popular?api_key=<api_key_here>&language=en-US&page=1
+    * https://api.themoviedb.org/3/movie/<movie_id>>?api_key=<api_key_here>&language=en-US
     * https://image.tmdb.org/t/p/w185/hEqw9swA8gFJuNjgWYEypwZfkZg.jpg
     * */
 

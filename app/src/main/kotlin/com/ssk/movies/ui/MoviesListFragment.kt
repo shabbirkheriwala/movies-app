@@ -7,26 +7,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.ssk.movies.R
 import com.ssk.movies.di.AppModule
 import com.ssk.movies.model.entities.Movie
 import com.ssk.movies.util.Resource
-import com.ssk.movies.util.Utils
+import com.ssk.movies.util.Utils.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_movies.*
 import kotlinx.android.synthetic.main.fragment_movies_list.*
-import kotlinx.android.synthetic.main.list_item_movie.view.*
-import com.google.android.material.snackbar.Snackbar
 
 @AndroidEntryPoint
-class MoviesListFragment : Fragment() {
+class MoviesListFragment : BaseFragment() {
     private val viewModel: MoviesListViewModel by viewModels()
     private lateinit var adapter: MovieListAdapter
 
@@ -43,19 +37,6 @@ class MoviesListFragment : Fragment() {
         checkForNetwork()
         setupRecyclerView()
         setupObservers()
-    }
-
-    private fun checkForNetwork() {
-        activity?.let {
-            if (!Utils.isNetworkConnected(it.application)) {
-                it.progressBar.visibility = View.GONE
-                Snackbar.make(
-                    recyclerView,
-                    getString(R.string.network_unavailable),
-                    Snackbar.LENGTH_LONG
-                ).show()
-            }
-        }
     }
 
     private fun setupRecyclerView() {
@@ -124,9 +105,7 @@ class MoviesListFragment : Fragment() {
 
             fun bind(movie: Movie) {
                 title.text = movie.title
-                Glide.with(image)
-                    .load(AppModule.BASE_IMAGE_URL + movie.poster_path)
-                    .into(image)
+                image.loadImage(AppModule.BASE_IMAGE_URL + movie.poster_path)
 
                 itemView.setOnClickListener {
                     val direction = R.id.action_movie_details
