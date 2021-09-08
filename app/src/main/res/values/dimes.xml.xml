@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin">8dp</dimen>
+    <dimen name="padding">4dp</dimen>
+    <dimen name="padding_2x">8dp</dimen>
+    <dimen name="padding_3x">12dp</dimen>
+    <dimen name="image_width">100dp</dimen>
+    <dimen name="image_height">100dp</dimen>
+    <dimen name="card_elavation">5dp</dimen>
+
+</resources>
